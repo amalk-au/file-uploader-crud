@@ -1,113 +1,169 @@
-# NodeJs-File-Uploader-CRUD
+# File Uploader CRUD
 
-## **Introduction**
+A personal file storage application inspired by platforms like Google Drive. Upload, organise, manage and download files and folders through a web interface.
 
-This project is a minimalistic implementation of a personal storage service, inspired by platforms like Google Drive. It offers users the ability to upload, manage, and share files and folders in a secure and structured environment. This project demonstrates expertise in backend development using **Express**, **Prisma**, and modern authentication practices.
+**Live Demo:**[File Uploader CRUD](https://nodejs-file-uploader-crud.onrender.com)
 
-- Live Version (https://nodejs-file-uploader-crud.onrender.com)
+## Features
 
-## **Features**
+- **Authentication:** Session-based authentication using Passport.js.
 
-### **Core Features**
+- **Session Persistence:** Store user sessions in PostgreSQL using Prisma Session Store.
 
-1. **Session-Based Authentication**:
+- **File Upload:** Upload files using Multer middleware.
 
-   - Utilizes **Passport.js** for authentication.
-   - Sessions are persisted using the **Prisma session store**, ensuring consistent user sessions across server restarts.
+- **Folder Management:** Create and organise folders.
 
-2. **File Upload**:
+- **File Details:** View file metadata, including name, size and upload timestamp.
 
-   - Authenticated users can upload files using **Multer** middleware.
-   - Files are initially saved to the local filesystem.
+- **File Downloads:** Download uploaded files.
 
-3. **Folder Management**:
+- **File Storage:** Store uploaded files on the local filesystem.
 
-   - Complete CRUD (Create, Read, Update, Delete) functionality for folders.
-   - Files can be organized within folders.
+- **Database:** Store file metadata, user information and sessions using PostgreSQL.
 
-4. **File Details and Downloads**:
+## Screenshots
 
-   - View detailed metadata of uploaded files, including:
-     - Name
-     - Size
-     - Upload timestamp
-   - Download functionality to retrieve files.
+Screenshots of the application are available in [`docs/screenshots`](docs/screenshots/).
 
-5. **Cloud Storage Integration**:
-   - Files are uploaded to a cloud storage service (**Cloudinary** or **Supabase Storage**) for scalable and efficient storage.
-   - The file URL is stored in the database for easy access.
+## Tech Stack
 
-## **Tech Stack**
+- **Backend:** Node.js, Express.js
 
-- **Backend**: Node.js, Express.js
-- **Database**: PostgreSQL (managed with Prisma ORM)
-- **Authentication**: Passport.js (with session-based authentication)
-- **File Storage**:
-  - Local filesystem (initial stage)
-  - Cloudinary or Supabase Storage (final stage)
-- **Session Management**: Prisma session store
-- **Middleware**: Multer (for file uploads)
+- **Database:** PostgreSQL
 
----
+- **ORM:** Prisma
 
-## **Project Setup**
+- **Authentication:** Passport.js, Passport Local
 
-### **Prerequisites**
+- **Session Management:** Express Session, Prisma Session Store
 
-- Node.js / fs / Express / Passport / Multer
-- PostgreSQL
-- Cloudinary or Supabase account for cloud storage
-- Environment variables configured:
-  - `DATABASE_URL`
-  - `SESSION_SECRET`
+- **File Upload:** Multer
 
-### **Installation**
+- **Password Hashing:** bcryptjs
 
-1. Clone the repository:
+- **Templating Engine:** EJS
 
-   ```bash
-   git clone git@github.com:1Amal/NodeJs-File-Uploader-CRUD.git
-   cd NodeJs-File-Uploader-CRUD
-   ```
+- **Validation:** Express Validator
 
-2. Install dependencies:
+- **File Storage:** Local filesystem
 
-```bash
-npm install
+- **Cloud Storage:** Supabase Storage (planned integration)
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js
+
+- NPM
+
+- PostgreSQL database
+
+### Installation
+
+1.  Clone the repository:
+
+    ```
+    git clone https://github.com/amalk-au/file-uploader-crud.git
+    ```
+
+2.  Navigate to the project directory:
+
+    ```
+    cd file-uploader-crud
+    ```
+
+3.  Install dependencies:
+
+    ```
+    npm install
+    ```
+
+4.  Create a `.env` file in the root directory:
+
+    ```
+    DATABASE_URL="your_postgresql_connection_string"
+    SESSION_SECRET="your_session_secret"
+    APP_PORT=3000
+    HOME_FOLDER=uploads
+    ```
+
+5.  Generate the Prisma client:
+
+    ```
+    npx prisma generate
+    ```
+
+6.  Run database migrations:
+
+    ```
+    npx prisma migrate dev --name init
+    ```
+
+7.  Start the application:
+
+    ```
+    npm start
+    ```
+
+8.  Open your browser:
+
+    ```
+    http://localhost:3000
+    ```
+
+**Note:** User registration is not currently implemented. An existing user record is required to authenticate.
+
+## Project Structure
+
+```
+file-uploader-crud/
+├── controllers/       # Application controllers
+├── db/                # Prisma database queries
+├── docs/
+│   └── screenshots/   # Application screenshots
+├── prisma/            # Prisma schema and migrations
+├── routes/            # Application routes
+├── security/          # Authentication and session configuration
+├── storage/           # File upload and storage configuration
+├── validators/        # Input validation
+├── views/             # EJS templates
+├── app.js             # Application entry point
+├── package.json       # Dependencies and scripts
+├── package-lock.json
+├── LICENSE
+└── README.md
 ```
 
-3. Configure environment variables:
+## Future Improvements
 
-Create a .env file in the root directory.
-Add the required variables:
+The following features are planned or require further development:
 
-```env
-DATABASE_URL=your_database_url
-SESSION_SECRET=your_session_secret
-CLOUDINARY_URL=your_cloudinary_url
-```
+- Implement user registration.
 
-4. Set up the database:
+- Associate files and folders with individual users.
 
-```npx
-npx prisma migrate dev --name init
+- Implement file renaming.
 
-```
+- Implement folder renaming.
 
-5. Start the server:
+- Implement moving files between folders.
 
-```npm
+- Integrate cloud storage using Supabase Storage or another cloud storage provider.
 
-npm start
+- Improve file and folder management functionality.
 
-```
+## License
 
-## Further Development Notes
+This project is licensed under the GNU General Public License v3.0 (GPL-3.0). See the [LICENSE](LICENSE) file for details.
 
-- Due to time constraints following functionality is not yet Implemented
+## Author
 
-1. Save Files/Folders under different Usernames i.e. maverick@gmail.com
-2. Rename Folders
-3. Rename Files
-4. Move Files to other folders
-5. User Signup functionality
+**Amal K.**
+
+- GitHub: [@amalk-au](https://github.com/amalk-au)
+
+- Portfolio: [amalk.au](https://www.amalk.au)
+
+- Repository: [file-uploader-crud](https://github.com/amalk-au/file-uploader-crud)
