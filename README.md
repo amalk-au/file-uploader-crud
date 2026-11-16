@@ -38,6 +38,13 @@ The application uses Express.js to handle HTTP requests and EJS to render the us
 
 ![Login Page](./docs/screenshots/login.png)
 
+## Dashboard
+![Dashboard](./docs/screenshots/dashboard.png)
+
+## File Operations
+
+![File Operations](./docs/screenshots/file-operations.png)
+
 ## Tech Stack
 
 - **Runtime:** Node.js
