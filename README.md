@@ -1,34 +1,46 @@
 # File Uploader CRUD
 
-A personal file storage application inspired by platforms like Google Drive. Upload, organise, manage and download files and folders through a web interface.
-
-**Live Demo:**[File Uploader CRUD](https://nodejs-file-uploader-crud.onrender.com)
+A personal file storage application inspired by platforms like Google Drive. Upload, organise, manage and download files through a web interface.
 
 ## Features
 
-- **Authentication:** Session-based authentication using Passport.js.
+- **Authentication:** User authentication using Passport.js and local strategy.
 
-- **Session Persistence:** Store user sessions in PostgreSQL using Prisma Session Store.
+- **Session Management:** Persistent sessions using Express Session and Prisma Session Store.
 
-- **File Upload:** Upload files using Multer middleware.
+- **File Upload:** Upload files using Multer.
 
-- **Folder Management:** Create and organise folders.
-
-- **File Details:** View file metadata, including name, size and upload timestamp.
+- **File Management:** View file details, including name, size and upload date.
 
 - **File Downloads:** Download uploaded files.
 
-- **File Storage:** Store uploaded files on the local filesystem.
+- **Folder Management:** Create folders to organise uploaded files.
 
-- **Database:** Store file metadata, user information and sessions using PostgreSQL.
+- **File Deletion:** Remove uploaded files and their database records.
+
+## How It Works
+
+The application uses Express.js to handle HTTP requests and EJS to render the user interface.
+
+1.  **Authentication:** Passport.js authenticates users using their username and password. Express Session maintains their login state, with session data persisted in PostgreSQL through Prisma Session Store.
+
+2.  **File Upload:** Multer handles file uploads using disk storage. Uploaded files are saved to the local filesystem, organised into folders.
+
+3.  **Database:** Prisma ORM manages PostgreSQL operations. File metadata, including the original filename, generated filename, file path and size, is stored in the database.
+
+4.  **File Management:** The application retrieves stored metadata to display uploaded files and their details. Users can download or delete files through the application.
+
+5.  **Folder Organisation:** Folder information is stored in PostgreSQL and used to organise uploaded files.
 
 ## Screenshots
 
-Screenshots of the application are available in [`docs/screenshots`](docs/screenshots/).
+See [`docs/screenshots`](docs/screenshots/) for application screenshots.
 
 ## Tech Stack
 
-- **Backend:** Node.js, Express.js
+- **Runtime:** Node.js
+
+- **Backend:** Express.js
 
 - **Database:** PostgreSQL
 
@@ -40,15 +52,13 @@ Screenshots of the application are available in [`docs/screenshots`](docs/screen
 
 - **File Upload:** Multer
 
-- **Password Hashing:** bcryptjs
+- **Templating:** EJS
 
-- **Templating Engine:** EJS
+- **Password Hashing:** bcryptjs
 
 - **Validation:** Express Validator
 
-- **File Storage:** Local filesystem
-
-- **Cloud Storage:** Supabase Storage (planned integration)
+- **Storage:** Local filesystem
 
 ## Getting Started
 
@@ -58,7 +68,7 @@ Screenshots of the application are available in [`docs/screenshots`](docs/screen
 
 - NPM
 
-- PostgreSQL database
+- PostgreSQL
 
 ### Installation
 
@@ -113,8 +123,6 @@ Screenshots of the application are available in [`docs/screenshots`](docs/screen
     http://localhost:3000
     ```
 
-**Note:** User registration is not currently implemented. An existing user record is required to authenticate.
-
 ## Project Structure
 
 ```
@@ -126,7 +134,7 @@ file-uploader-crud/
 ├── prisma/            # Prisma schema and migrations
 ├── routes/            # Application routes
 ├── security/          # Authentication and session configuration
-├── storage/           # File upload and storage configuration
+├── storage/           # Local file storage and Multer configuration
 ├── validators/        # Input validation
 ├── views/             # EJS templates
 ├── app.js             # Application entry point
@@ -138,19 +146,17 @@ file-uploader-crud/
 
 ## Future Improvements
 
-The following features are planned or require further development:
-
 - Implement user registration.
 
 - Associate files and folders with individual users.
 
-- Implement file renaming.
-
-- Implement folder renaming.
+- Implement file and folder renaming.
 
 - Implement moving files between folders.
 
-- Integrate cloud storage using Supabase Storage or another cloud storage provider.
+- Improve file upload validation and error handling.
+
+- Integrate cloud storage using Supabase or Cloudinary.
 
 - Improve file and folder management functionality.
 
