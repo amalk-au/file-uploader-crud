@@ -34,7 +34,9 @@ The application uses Express.js to handle HTTP requests and EJS to render the us
 
 ## Screenshots
 
-See [`docs/screenshots`](docs/screenshots/) for application screenshots.
+## Login
+
+![Login Page](./docs/screenshots/login.png)
 
 ## Tech Stack
 
